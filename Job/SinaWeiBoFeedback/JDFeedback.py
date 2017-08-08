@@ -9,8 +9,16 @@ startUrl = 'https://m.weibo.cn/api/container/getIndex?uid=5650743478&luicode=100
 headers = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64; rv:54.0) Gecko/20100101 Firefox/54.0'
     ,
-    'Cookie': 'SSOLoginState=1501986550; ALF=1504578549; SCF=Ag0epa_4tyFCglnCwHJiaRDznUy645wpqEhg-dG3Sv0c2Icivp_BULMb9bfEc3twN2wMzY-g0ZK7wXOUhGhYltA.; SUB=_2A250gg6lDeRhGeBN6FsT8i7MyTyIHXVXjJLtrDV6PUJbktBeLWLskW1IO7sOMnCgmxWsbdsARjqxlJ5xeg..; SUBP=0033WrSXqPxfM725Ws9jqgMF55529P9D9WFNrBkhSeVrfPGckwnaFCcy5JpX5o2p5NHD95Qce0e4eoz7ehz7Ws4DqcjBIcHVdr.peoepeoefeK5Ee5tt; SUHB=0TPVQCHc4lf_-N; _T_WM=22bb4d80315608a0e9bd3bf92b3c1dac; M_WEIBOCN_PARAMS=luicode%3D10000011%26lfid%3D100103type%253D1%2526q%253D%25E4%25BA%25AC%25E4%25B8%259C%25E5%25AE%25A2%25E6%259C%258D%26featurecode%3D20000320%26fid%3D1005055650743478%26uicode%3D10000011'
+    'Cookie': 'ALF=1504709445; SCF=Ag0epa_4tyFCglnCwHJiaRDznUy645wpqEhg-dG3Sv0cbfGX1wNmqXPnHQroard1FW2nn3RdCnmux4VZ7bFRuMo.; SUHB=0ebt4qVvtKU1d7; _T_WM=22bb4d80315608a0e9bd3bf92b3c1dac; SUB=_2A250jA4VDeRhGeBN6FsT8i7MyTyIHXVXjpJdrDV6PUJbktBeLXjBkW1oTOqmqg0rff3UmekP4TzhMFYtsw..; SUBP=0033WrSXqPxfM725Ws9jqgMF55529P9D9WFNrBkhSeVrfPGckwnaFCcy5JpX5o2p5NHD95Qce0e4eoz7ehz7Ws4DqcjBIcHVdr.peoepeoefeK5Ee5tt; M_WEIBOCN_PARAMS=luicode%3D10000011%26lfid%3D100103type%253D1%2526q%253D%2540%25E4%25BA%25AC%25E4%25B8%259C%25E5%25AE%25A2%25E6%259C%258D%26featurecode%3D20000320%26fid%3D1076035650743478%26uicode%3D10000011'
     ,
+    'Host':'m.weibo.cn'
+    ,
+'Accept':'application/json, text/plain, */*',
+    'Accept-Language':'zh-CN,zh;q=0.8,en-US;q=0.5,en;q=0.3',
+    'Accept-Encoding':'gzip, deflate, br',
+    'X-Requested-With':'XMLHttpRequest',
+    'Referer':'https://m.weibo.cn/u/5650743478?uid=5650743478&luicode=10000011&lfid=100103type%3D1%26q%3D%40%E4%BA%AC%E4%B8%9C%E5%AE%A2%E6%9C%8D&featurecode=20000320',
+
 }
 
 # 详情页list
@@ -88,7 +96,7 @@ def parseJsonData(jsonData):
                 print(jsonData2)
                 pagedetail = pagedetail +1
                 jsonDatadetail = json.loads(jsonData2, 'utf-8')
-                listdata = jsonDatadetail['data']
+                listdata = jsonDatadetail['data'] if 'data' in jsonDatadetail else ''
                 # print(listdata)
                 parseDetailListdata(listdata)
             pagedetail = 1
@@ -132,14 +140,14 @@ def getpageSize(comments,idstr):
 # parseJsonData(jsonData)
 
 
-# print(str(textList))
+# print(str(textList))  page = 7
 # print(str(detaiList))
 f = open('微博京东说说跟评论.txt', 'a',encoding='utf-8')
 def main_start():
-    for inde in range(2,50):
+    for inde in range(11,50):
         # startUrl = 'https://m.weibo.cn/api/container/getIndex?uid=5650743478&luicode=10000011&lfid=100103type%3D1%26q%3D%E4%BA%AC%E4%B8%9C%E5%AE%A2%E6%9C%8D&featurecode=20000320&type=uid&value=5650743478&containerid=1005055650743478&page='+str(inde)
 
-        startUrl = 'https://m.weibo.cn/api/container/getIndex?uid=5650743478&luicode=10000011&lfid=100103type%3D1%26q%3D%E4%BA%AC%E4%B8%9C%E5%AE%A2%E6%9C%8D&featurecode=20000320&type=uid&value=5650743478&containerid=1076035650743478&page='+str(inde)
+        startUrl = 'https://m.weibo.cn/api/container/getIndex?uid=5650743478&luicode=10000011&lfid=100103type%3D1%26q%3D@%E4%BA%AC%E4%B8%9C%E5%AE%A2%E6%9C%8D&featurecode=20000320&type=uid&value=5650743478&containerid=1076035650743478&page={}'+str(inde)
         pageindex = '页数：'+str(inde)+'\r\n'
         print('startUrl   '+'index '+str(inde)+'     '+startUrl)
         f.write(pageindex)
