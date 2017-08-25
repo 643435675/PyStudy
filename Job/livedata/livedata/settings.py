@@ -10,10 +10,14 @@
 #     http://scrapy.readthedocs.org/en/latest/topics/spider-middleware.html
 
 BOT_NAME = 'livedata'
-
 SPIDER_MODULES = ['livedata.spiders']
 NEWSPIDER_MODULE = 'livedata.spiders'
 
+# 配置mongoDB
+MONGO_HOST = "127.0.0.1"  # 主机IP
+MONGO_PORT = 27017  # 端口号
+MONGO_DB = "aichengxu"  # 库名
+MONGO_COLL = "ai_chengxu"  # collection
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'livedata (+http://www.yourdomain.com)'
